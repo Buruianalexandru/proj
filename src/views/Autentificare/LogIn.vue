@@ -13,7 +13,7 @@
 
         <button class="login-button">Login</button>
         <div v-if="error" class="error-message">{{ error }}</div>
-        <router-link to="/forgotpass" class="signup-link">Ați uitat parola?</router-link>
+        <!-- <router-link to="/forgotpass" class="signup-link">Ați uitat parola?</router-link> -->
         <router-link to="/signup" class="signup-link">Nu aveți cont? Creați aici</router-link>
 
       </form>

@@ -69,6 +69,14 @@ import ProgresiiArit from '@/views/Clasa a-9-a/progresii/ProgresiiArit.vue'
 import ProgresiiA9a from '@/views/Clasa a-9-a/progresii/ProgresiiA9a.vue'
 import ProgresiiGeom from '@/views/Clasa a-9-a/progresii/ProgresiiGeom.vue'
 import DerivatE from '@/views/Clasa a-11-a/analiza/DerivatE.vue'
+import QPA from '@/views/Quizzes/QPA.vue'
+import QPG from '@/views/Quizzes/QPG.vue'
+import QP1 from '@/views/Quizzes/QP1.vue'
+import QP2 from '@/views/Quizzes/QP2.vue'
+import QuizReport from '@/views/Quizzes/QuizReport.vue'
+import VariantaDoi from '@/views/Bac/VariantaDoi.vue'
+import VariantaTrei from '@/views/Bac/VariantaTrei.vue'
+import VariantaUnu from '@/views/Bac/VariantaUnu.vue'
 import store from '@/store'
 const routes = [
   {
@@ -421,7 +429,47 @@ const routes = [
     path:'/derivate',
     name:'derivate',
     component:DerivatE
-  }
+  },
+  {
+    path:'/qpa',
+    name:'qpa',
+    component:QPA
+  },
+  {
+    path: '/qpg',
+    name: 'qpg',
+    component: QPG
+  },
+  {
+    path: '/qp1',
+    name: 'qp1',
+    component: QP1
+  },
+  {
+    path: '/qp2',
+    name: 'qp2',
+    component: QP2
+  },
+  {
+    path: '/qrep',
+    name: 'qrep',
+    component: QuizReport
+  },
+  {
+    path:'/v1',
+    name:'v1',
+    component:VariantaUnu
+  },
+  {
+    path: '/v2',
+    name: 'v2',
+    component: VariantaDoi
+  },
+  {
+    path: '/v3',
+    name: 'v3',
+    component: VariantaTrei
+  },
 ];
 
 

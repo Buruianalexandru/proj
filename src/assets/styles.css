@@ -21,28 +21,55 @@
 }
 
 .nav-center .nav-link {
-    color: #000;
+color: #000;
     /* Black text */
     text-decoration: none;
-    
+
     padding: 0.5rem 1rem;
     transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .nav-center .nav-link:hover {
-    color: #fff;
+
     /* White text on hover */
     background-color: #4CAF50;
-    /* Green background on hover */
+
     border-radius: 4px;
 }
 
-.user-nav,
-.auth-links {
-    display: flex;
-    align-items: center;
+.auth-links .nav-link {
+    background-color:#4CAF50;
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 8px;
+    border-radius: 5px;
+
 }
 
+.auth-links .nav-link:last-child {
+    margin-right: 0;
+    /* Remove the margin for the last item to maintain alignment */
+}
+.user-nav .user-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #000;
+    /* Black text */
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 4px;
+}
+
+.user-nav .user-button:hover {
+    color: #fff;
+    /* White text on hover */
+    background-color:#4CAF50;
+    /* Orange background on hover */
+}
 .logout-button {
     background-color: transparent;
     border: none;
@@ -600,7 +627,7 @@ button:hover {
 }
 
 .content-box {
-    width: 400px;
+    width: 600px;
     /* Lățimea fiecărui container */
     text-align: center;
     padding: 20px;
@@ -704,4 +731,67 @@ background-color: #ffffe0;
    .continut th,td{
             padding: 10px;
                 text-align: center;
+   }
+   .continut button{
+    background-color: #4CAF50;
+        color: #fff;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+   }
+   .btn-test {
+       background-color: green;
+       color: white;
+       padding: 10px 20px;
+       border: none;
+       border-radius: 5px;
+       font-size: 16px;
+       cursor: pointer;
+       display: block;
+       margin: 20px auto;
+       text-align: center;
+   }
+   .quiz-container {
+       width: 60%;
+       /* Adjust the width as needed */
+       margin: 20px auto;
+       /* Auto margins for horizontal centering */
+       padding: 20px;
+       border: 1px solid #ccc;
+       border-radius: 8px;
+       background-color: #f9f9f9;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       /* Center children horizontally */
+       justify-content: center;
+       /* Center children vertically */
+   }
+
+   .quiz-block {
+       width: 100%;
+       /* Makes sure the quiz block takes the full width of the container */
+       margin-bottom: 15px;
+   }
+
+   button.selected {
+       background-color: #245926;
+       /* Green background for selected answers */
+       color: white;
+   }
+
+   button {
+       padding: 10px 20px;
+       margin: 5px;
+       border: none;
+       border-radius: 5px;
+       cursor: pointer;
+       transition: background-color 0.3s;
+   }
+
+   button:hover {
+       background-color: #45a049;
+       /* Darker green on hover */
    }

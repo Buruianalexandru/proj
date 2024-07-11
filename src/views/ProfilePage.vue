@@ -1,7 +1,7 @@
 <template>
  <div class="profile-container">
     <div v-if="user" @mouseover="showChange = true" @mouseleave="showChange = false" class="profile-image-container">
-      <!-- Utilizează operatorul optional chaining pentru a verifica dacă user există -->
+
       <img :src="user?.profilePic || '@/assets/user_149071.png'" alt="Profile Image" class="profile-header-image" />
       <div v-if="showChange" class="change-image-overlay">
         <input type="file" @change="uploadNewProfilePic" style="display: none" ref="fileInput">
@@ -9,9 +9,10 @@
       </div>
     </div>
     <div v-if="user" class="profile-content">
+      <h1></h1>
       <h1>{{ user?.firstname }} {{ user?.lastname }}</h1>
       <p>Email: {{ user?.email }}</p>
-      <p>Level: {{ user?.level }}</p>
+      <p>Nivel: {{ user?.level }}</p>
       <router-link to="/changepass" class="change-password-button">Change Password</router-link>
     </div>
    <div v-else>
@@ -34,7 +35,7 @@ export default {
     const fileInput = ref(null);
 
     const triggerFileInput = () => {
-      fileInput.value.click(); // Declanșează deschiderea file explorerului
+      fileInput.value.click(); 
     };
 
     const uploadNewProfilePic = async (event) => {
@@ -45,8 +46,9 @@ export default {
       await uploadBytes(storageReference, file);
       const imageUrl = await getDownloadURL(storageReference);
 
-      // Update Firestore and Vuex store
-      store.dispatch('updateUserProfilePic', imageUrl);
+      window.location.reload();
+      await store.dispatch('updateUserProfilePic', imageUrl);
+      
     };
 
     return { user, showChange, triggerFileInput, uploadNewProfilePic, fileInput };

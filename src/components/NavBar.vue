@@ -3,15 +3,18 @@
     <template v-if="authIsReady">
       <router-link to="/" class="nav-logo">
         <img src="@/assets/logo.png" alt="Logo" class="logo-img" />
-      </router-link>
-
-      <div class="nav-center">
-        <router-link to="/" class="nav-link">Home</router-link>
-        <!-- for logged users-->
+      </router-link> 
+       <!-- <div class="search-container">
+      <input v-model="searchText" @input="searchTitles" type="search" placeholder="Search...">
+      <div v-if="searchResults.length" class="search-results">
+        <div v-for="result in searchResults" :key="result.id" class="search-item">
+          <router-link :to="result.route">{{ result.title }}</router-link>
+        </div>
+      </div>
+    </div> -->
+      <div class="nav-right">
         <div v-if="user" class="user-nav">
-          <router-link to="/profile" class="nav-link">{{ user.firstname }}</router-link>
-          
-          <!-- Dropdown menu -->
+           <button class="user-button" @click="goToPage('/profile')">{{ user.firstname }}</button>
           <div class="dropdown">
             <button class="dropbtn">Invata</button>
             <div class="dropdown-content">
@@ -22,16 +25,12 @@
               <router-link to="/bac" class="dropdown-link">Bacalaureat</router-link>
             </div>
           </div>
+          <button @click="handleClick" class="nav-link logout-button">Logout</button>
         </div>
-        <!-- for logged out users-->
         <div v-if="!user" class="auth-links">
           <router-link to="/login" class="nav-link">Login</router-link>
           <router-link to="/signup" class="nav-link">Signup</router-link>
         </div>
-      </div>
-      <div v-if="user">
-        <!-- Updated logout button with click event -->
-        <button @click="handleClick" class="nav-link logout-button">Logout</button>
       </div>
     </template>
   </nav>
@@ -39,30 +38,43 @@
 
 <script>
 import { useStore } from 'vuex'
-import { computed } from 'vue'
-import { useRouter } from 'vue-router' // Import corect
-
+import { computed,ref } from 'vue'
+import { useRouter } from 'vue-router' 
 export default {
   setup() {
     const store = useStore();
-    const router = useRouter(); // Aici adaugăm useRouter pentru a accesa $router
-
+    const router = useRouter(); 
+    const user=computed(() => store.state.user);
+    const  authIsReady=computed(() => store.state.authIsReady);
     const handleClick = async () => {
-      // Clears all cookies
+ 
       document.cookie.split(";").forEach((c) => {
         document.cookie = c.trim().split("=")[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
       });
 
-      // Dispatch logout action from Vuex store
+      
       await store.dispatch('logout');
-      // Redirect to login page
+ 
       router.push('/login');
     }
+     const searchText = ref('');
+    const searchResults = computed(() => store.getters.searchResults);
 
+    const searchTitles = () => {
+       console.log('Searching for:', searchText.value);
+      store.dispatch('searchTitles', searchText.value);
+    };
+      const goToPage = (route) => {
+      router.push(route);
+    };
     return {
       handleClick,
-      user: computed(() => store.state.user),
-      authIsReady: computed(() => store.state.authIsReady)
+      user,
+      authIsReady,
+      searchText,
+      searchTitles,
+      searchResults,
+      goToPage
     }
   }
 }

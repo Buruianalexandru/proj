@@ -37,7 +37,7 @@
         <li>Numărul de termeni: <span class="highlight">n = 4</span></li>
     </ul>
     <p class="formula">S<sub>4</sub> = 4/2 * (2 * 3 + (4 - 1) * 3) = 2 * (6 + 9) = 2 * 15 = 30</p>
-    
+     <button @click="goToPage()" class="btn-test">Test teorie</button>
     </div>
     </div>
     <div v-else>
@@ -47,11 +47,22 @@
 <script>
 import {computed} from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 export default({
-  setup() {
-     const user = computed(() => store.state.user);
-     const store = useStore();
-         return{user}
-  },
-})
+   setup() {
+    const store = useStore(); // Asigură-te că acesta este definit corect
+    const router = useRouter();
+    const user = computed(() => store.state.user); // 'user' trebuie definit după 'store'
+
+    const goToPage = (route) => {
+      router.push('/qpa');
+    };
+
+    return {
+      user,
+      goToPage
+    };
+  }
+}
+)
 </script>

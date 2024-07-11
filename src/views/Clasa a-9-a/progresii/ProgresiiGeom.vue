@@ -37,7 +37,7 @@
         <li>Numărul de termeni: <span class="highlight">n = 4</span></li>
     </ul>
     <p class="formula">S<sub>4</sub> = 3 * (3<sup>4</sup> - 1) / (3 - 1) = 3 * (81 - 1) / 2 = 3 * 80 / 2 = 120</p>
-    
+    <button @click="goToPage()" class="btn-test">Test teorie</button>
    </div>
     </div>
     <div v-else>
@@ -47,11 +47,22 @@
 <script>
 import {computed} from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 export default({
-  setup() {
-     const user = computed(() => store.state.user);
-     const store = useStore();
-         return{user}
-  },
-})
+   setup() {
+    const store = useStore(); // Asigură-te că acesta este definit corect
+    const router = useRouter();
+    const user = computed(() => store.state.user); // 'user' trebuie definit după 'store'
+
+    const goToPage = (route) => {
+      router.push('/qpg');
+    };
+
+    return {
+      user,
+      goToPage
+    };
+  }
+}
+)
 </script>
